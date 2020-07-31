@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Андрей Бернгарт](https://up.htmlacademy.ru/ecmascript/12/user/826825).
-* Наставник: `Неизвестно`.
+* Наставник: [Сергей Бахтин](https://up.htmlacademy.ru/javascript/17/user/1006021).
 
 ---
 
