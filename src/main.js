@@ -122,8 +122,8 @@ render(filmsContainer, createFilmsListTemplate(`Most commented`, `--extra`, true
 const filmExtraLists = filmsContainer.querySelectorAll(`.films-list--extra`);
 
 for (let i = 0; i < filmExtraLists.length; i++) {
-  const filmListContainer = filmExtraLists[i].querySelector(`.films-list__container`);
-  for (let i = 0; i < FILM_CARD_EXTRA_COUNT; i++) {
-    render(filmListContainer, createFilmCardTemplate(), `beforeend`);
+  const filmListExtraContainer = filmExtraLists[i].querySelector(`.films-list__container`);
+  for (let j = 0; j < FILM_CARD_EXTRA_COUNT; j++) {
+    render(filmListExtraContainer, createFilmCardTemplate(), `beforeend`);
   }
 }
