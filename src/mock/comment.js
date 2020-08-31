@@ -1,4 +1,4 @@
-import {getRandomFloorInteger, generateDate} from "../utils.js";
+import {getRandomInteger, generateDate} from "../utils.js";
 import {EMOJIS} from "../const.js";
 
 export const generateFilmComments = () => {
@@ -17,15 +17,15 @@ export const generateFilmComments = () => {
   ];
 
   const generateComment = () => {
-    return comments[getRandomFloorInteger(0, comments.length - 1)];
+    return comments[getRandomInteger(0, comments.length - 1)];
   };
 
   const generateCommentAutor = () => {
-    return autors[getRandomFloorInteger(0, autors.length - 1)];
+    return autors[getRandomInteger(0, autors.length - 1)];
   };
 
   const generateCommentEmoji = () => {
-    return EMOJIS[getRandomFloorInteger(0, EMOJIS.length - 1)];
+    return EMOJIS[getRandomInteger(0, EMOJIS.length - 1)];
 
   };
 
@@ -38,6 +38,6 @@ export const generateFilmComments = () => {
     };
   };
 
-  return new Array(getRandomFloorInteger(1, 5)).fill().map(generatefilmComment);
+  return new Array(getRandomInteger(1, 5)).fill().map(generatefilmComment);
 
 };

@@ -1,5 +1,5 @@
 import {generateFilmComments} from "./comment.js";
-import {getRandomFloorInteger, getRandomInteger, getRendomArrayElements, generateDate} from "../utils.js";
+import {getRandomInteger, getRandomArrayElements, generateDate} from "../utils.js";
 
 const generatefilmTitle = () => {
   const filmTitles = [
@@ -12,7 +12,7 @@ const generatefilmTitle = () => {
     `Made For Each Other`
   ];
 
-  const randomIndex = getRandomFloorInteger(0, filmTitles.length - 1);
+  const randomIndex = getRandomInteger(0, filmTitles.length - 1);
 
   return filmTitles[randomIndex];
 };
@@ -28,7 +28,7 @@ const generatefilmPoster = () => {
     `the-man-with-the-golden-arm.jpg`
   ];
 
-  const randomIndex = getRandomFloorInteger(0, filmPosters.length - 1);
+  const randomIndex = getRandomInteger(0, filmPosters.length - 1);
 
   return filmPosters[randomIndex];
 };
@@ -48,30 +48,30 @@ const generateFilmDescription = () => {
     `In rutrum ac purus sit amet tempus.`
   ];
 
-  return getRendomArrayElements(filmDescriptions, 5);
+  return getRandomArrayElements(filmDescriptions, 5);
 };
 
 const generateFilmRating = () => {
-  return getRandomInteger(0, 10).toFixed(1);
+  return `${getRandomInteger(0, 9)}.${getRandomInteger(0, 9)}`;
 };
 
 const generateFilmDuration = () => {
-  return `${getRandomFloorInteger(0, 3)}h ${getRandomFloorInteger(0, 59)}m`;
+  return `${getRandomInteger(0, 3)}h ${getRandomInteger(0, 59)}m`;
 };
 
 const generatefilmGenres = () => {
   const filmGenres = [`Drama`, `Mystery`, `Film-Noir`, `Musical`, `Western`, `Comedy`, `Cartoon`];
 
-  return getRendomArrayElements(filmGenres, filmGenres.length);
+  return getRandomArrayElements(filmGenres, filmGenres.length);
 };
 
 const generatefilmAge = () => {
-  return `${getRandomFloorInteger(0, 18)}+`;
+  return `${getRandomInteger(0, 18)}+`;
 };
 
 const generateFilmCountry = () => {
   const filmCountrys = [`Russia`, `Chechen Republic`, `Kazakhstan`, `Belarus`, `USA`, `Germany`];
-  const randomIndex = getRandomFloorInteger(0, filmCountrys.length - 1);
+  const randomIndex = getRandomInteger(0, filmCountrys.length - 1);
 
   return filmCountrys[randomIndex];
 };
@@ -79,7 +79,7 @@ const generateFilmCountry = () => {
 const generateFilmRegisseur = () => {
   const filmRegisseurs = [`Anthony Mann`, `Quentin Jerome Tarantino`, `Timur Bekmambetov`, `Tim Burton`];
 
-  const randomIndex = getRandomFloorInteger(0, filmRegisseurs.length - 1);
+  const randomIndex = getRandomInteger(0, filmRegisseurs.length - 1);
 
   return filmRegisseurs[randomIndex];
 };
@@ -95,7 +95,7 @@ const generateFilmScreenwriters = () => {
     `John Logan`
   ];
 
-  return getRendomArrayElements(filmScreenwriters, filmScreenwriters.length);
+  return getRandomArrayElements(filmScreenwriters, filmScreenwriters.length);
 };
 
 const generateFilmActors = () => {
@@ -111,7 +111,7 @@ const generateFilmActors = () => {
     `Aruna Irani`
   ];
 
-  return getRendomArrayElements(filmActors, filmActors.length);
+  return getRandomArrayElements(filmActors, filmActors.length);
 };
 
 export const generateFilm = () => {
@@ -132,8 +132,8 @@ export const generateFilm = () => {
     filmRegisseur: generateFilmRegisseur(),
     filmActors: generateFilmActors(),
     filmScreenwriters: generateFilmScreenwriters(),
-    isWatched: Boolean(getRandomFloorInteger(0, 1)),
-    isInwatchlist: Boolean(getRandomFloorInteger(0, 1)),
-    isFavorite: Boolean(getRandomFloorInteger(0, 1))
+    isWatched: Boolean(getRandomInteger(0, 1)),
+    isInwatchlist: Boolean(getRandomInteger(0, 1)),
+    isFavorite: Boolean(getRandomInteger(0, 1))
   };
 };

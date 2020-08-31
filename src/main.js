@@ -12,8 +12,6 @@ import {generateFilter} from "./mock/filter.js";
 
 const FILM_CARD_COUNT = 23;
 const FILM_CARD_COUNT_PER_STEP = 5;
-// const FILM_CARD_EXTRA_COUNT = 2;
-// const FILM_COMMENT_COUNT = 4;
 
 const filmCards = new Array(FILM_CARD_COUNT).fill().map(generateFilm);
 const filters = generateFilter(filmCards);
@@ -70,14 +68,6 @@ render(footerStatistics, createStatisticsTemplate(), `beforeend`);
 render(filmsContainer, createFilmsListTemplate(`Top rated`, `--extra`, true), `beforeend`);
 render(filmsContainer, createFilmsListTemplate(`Most commented`, `--extra`, true), `beforeend`);
 
-// const filmExtraLists = filmsContainer.querySelectorAll(`.films-list--extra`);
-
-// for (let i = 0; i < filmExtraLists.length; i++) {
-//   const filmListExtraContainer = filmExtraLists[i].querySelector(`.films-list__container`);
-//   for (let j = 0; j < FILM_CARD_EXTRA_COUNT; j++) {
-//     render(filmListExtraContainer, createFilmCardTemplate(filmCards[i]), `beforeend`);
-//   }
-// }
 
 filmListContainer.addEventListener(`click`, (evt) => {
   let target = evt.target;
