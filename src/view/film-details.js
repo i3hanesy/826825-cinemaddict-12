@@ -1,4 +1,4 @@
-import {humanizeFilmDate, humanizeCommentDate} from "../utils.js";
+import {humanizeFilmDate, humanizeCommentDate, createElement} from "../utils.js";
 import {EMOJIS} from "../const.js";
 
 
@@ -48,7 +48,7 @@ const createFilmDetailCommentTemplate = (comments) => {
 
 };
 
-export const createFilmDetailsTemplate = (film) => {
+const createFilmDetailsTemplate = (film) => {
   const {filmTitle, filmTitleOrigin, filmPoster, filmRating,
     filmRegisseur, filmScreenwriters, filmActors, filmDate,
     filmDuration, filmСountry, filmGenres, filmAge, filmDescription,
@@ -154,3 +154,27 @@ export const createFilmDetailsTemplate = (film) => {
     </section>`
   );
 };
+
+export default class FilmDetails {
+  constructor(film) {
+    this._film = film;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmDetailsTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
