@@ -1,6 +1,6 @@
-import {humanizeFilmYear} from "../utils.js";
+import {humanizeFilmYear, createElement} from "../utils.js";
 
-export const createFilmCardTemplate = (film) => {
+const createFilmCardTemplate = (film) => {
   const {filmTitle, filmDescription, filmPoster, filmRating, filmDuration, filmGenres, filmDate, filmComments, isWatched, isInwatchlist, isFavorite} = film;
 
   const createShortfilmDescription = () => {
@@ -36,3 +36,27 @@ export const createFilmCardTemplate = (film) => {
     </article>`
   );
 };
+
+export default class FilmCard {
+  constructor(film) {
+    this._film = film;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmCardTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
