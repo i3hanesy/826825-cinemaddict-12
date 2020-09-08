@@ -1,5 +1,5 @@
 import {generateFilmComments} from "./comment.js";
-import {getRandomInteger, getRandomArrayElements, generateDate} from "../utils.js";
+import {getRandomInteger, getRandomArrayElements, generateDate} from "../utils/common.js";
 
 const generatefilmTitle = () => {
   const filmTitles = [
@@ -115,7 +115,7 @@ const generateFilmActors = () => {
 };
 
 export const generateFilm = () => {
-  let titleFilm = generatefilmTitle();
+  const titleFilm = generatefilmTitle();
 
   return {
     filmTitle: titleFilm,

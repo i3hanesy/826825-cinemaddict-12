@@ -1,4 +1,4 @@
-import {getRandomInteger, generateDate} from "../utils.js";
+import {getRandomInteger, generateDate} from "../utils/common.js";
 import {EMOJIS} from "../const.js";
 
 export const generateFilmComments = () => {
