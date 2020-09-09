@@ -7,7 +7,6 @@ export const humanizeFilmYear = (date) => {
 };
 
 export const humanizeCommentDate = (date) => {
-  date.toLocaleString(`en-US`, {year: `numeric`, month: `numeric`, day: `numeric`, hour: `numeric`, minute: `numeric`});
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();

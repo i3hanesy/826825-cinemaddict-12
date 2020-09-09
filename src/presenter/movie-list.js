@@ -4,7 +4,7 @@ import FilmsListView from "../view/films-list.js";
 import FilmCardView from "../view/film-card.js";
 import FilmDetailsView from "../view/film-details.js";
 import ShowMoreButtonView from "../view/show_more-button.js";
-import {render, RenderPosition, remove} from "../utils/render.js";
+import {render, RenderPosition} from "../utils/render.js";
 
 const FILM_CARD_COUNT_PER_STEP = 5;
 
@@ -41,7 +41,7 @@ export default class MovieList {
     const onEscKeyDown = (evt) => {
       if (evt.key === `Escape` || evt.key === `Esc`) {
         evt.preventDefault();
-        remove(filmDetailsComponent);
+        filmDetailsComponent.removeElement();
         document.removeEventListener(`keydown`, onEscKeyDown);
       }
     };
@@ -53,7 +53,7 @@ export default class MovieList {
       document.addEventListener(`keydown`, onEscKeyDown);
 
       filmDetailsComponent.setFilmCloseClickHandler(() => {
-        remove(filmDetailsComponent);
+        filmDetailsComponent.removeElement();
         document.removeEventListener(`keydown`, onEscKeyDown);
       });
     });
@@ -75,7 +75,7 @@ export default class MovieList {
     this._renderedFilmCount += FILM_CARD_COUNT_PER_STEP;
 
     if (this._renderedFilmCount >= this._filmCards.length) {
-      remove(this._showMoreButtonComponent);
+      this._showMoreButtonComponent.removeElement();
     }
   }
 
