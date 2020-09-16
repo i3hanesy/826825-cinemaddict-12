@@ -1,6 +1,8 @@
 import {generateFilmComments} from "./comment.js";
 import {getRandomInteger, getRandomArrayElements, generateDate} from "../utils/common.js";
 
+const generateId = () => Date.now() + parseInt(Math.random() * 10000, 10);
+
 const generatefilmTitle = () => {
   const filmTitles = [
     `The Dance of Life`,
@@ -118,6 +120,7 @@ export const generateFilm = () => {
   const titleFilm = generatefilmTitle();
 
   return {
+    id: generateId(),
     filmTitle: titleFilm,
     filmTitleOrigin: titleFilm,
     filmPoster: generatefilmPoster(),

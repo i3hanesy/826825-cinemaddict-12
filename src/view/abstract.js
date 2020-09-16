@@ -28,4 +28,8 @@ export default class Abstract {
       this._element = null;
     }
   }
+
+  removeLinkElement() {
+    this._element = null;
+  }
 }

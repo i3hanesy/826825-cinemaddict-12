@@ -1,4 +1,4 @@
-import AbstractView from "./abstract.js";
+import SmartView from "./smart.js";
 import {humanizeFilmDate, humanizeCommentDate} from "../utils/film.js";
 import {EMOJIS} from "../const.js";
 
@@ -142,7 +142,8 @@ const createFilmDetailsTemplate = (film) => {
             </ul>
 
             <div class="film-details__new-comment">
-              <div for="add-emoji" class="film-details__add-emoji-label"></div>
+              <div for="add-emoji" class="film-details__add-emoji-label">
+              </div>
 
               <label class="film-details__comment-label">
                 <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
@@ -156,26 +157,124 @@ const createFilmDetailsTemplate = (film) => {
   );
 };
 
-export default class FilmDetails extends AbstractView {
+export default class FilmDetails extends SmartView {
   constructor(film) {
     super();
-    this._film = film;
+    this._data = FilmDetails.parseFilmToData(film);
+    // this._emoji = ``;
+    // this._film = film;
 
+    this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
+    this._watchedClickHandler = this._watchedClickHandler.bind(this);
+    this._toWatchedListClickHandler = this._toWatchedListClickHandler.bind(this);
+
+    this._emojiClickHandler = this._emojiClickHandler.bind(this);
     this._filmCloseClickHandler = this._filmCloseClickHandler.bind(this);
+
+    this._setEmojiClickHandler();
+  }
+
+  reset(film) {
+    this.updateData(
+        FilmDetails.parseFilmToData(film)
+    );
   }
 
   getTemplate() {
-    return createFilmDetailsTemplate(this._film);
+    return createFilmDetailsTemplate(this._data);
+  }
+
+  restoreHandlers() {
+    this.setFavoriteClickHandler(this._callback.favoriteClick);
+    this.setFilmCloseClickHandler(this._callback.closeClick);
+    this.setWatchedClickHandler(this._callback.watchedClick);
+    this.setToWatchlistClickHandler(this._callback.toWatchListClick);
+  }
+
+  _favoriteClickHandler(evt) {
+    evt.preventDefault();
+    this._callback.favoriteClick(FilmDetails.parseDataToFilm(this._data));
+    this.updateData({
+      isFavorite: !this._data.isFavorite
+    });
+  }
+
+  _watchedClickHandler(evt) {
+    evt.preventDefault();
+    this._callback.watchedClick(FilmDetails.parseDataToFilm(this._data));
+    this.updateData({
+      isWatched: !this._data.isWatched
+    });
+  }
+
+  _toWatchedListClickHandler(evt) {
+    evt.preventDefault();
+    this._callback.toWatchListClick(FilmDetails.parseDataToFilm(this._data));
+    this.updateData({
+      isInwatchlist: !this._data.isInwatchlist
+    });
   }
 
 
   _filmCloseClickHandler(evt) {
     evt.preventDefault();
-    this._callback.closeClick();
+    this._callback.closeClick(this._data);
   }
 
   setFilmCloseClickHandler(callback) {
     this._callback.closeClick = callback;
     this.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, this._filmCloseClickHandler);
+  }
+
+  setFavoriteClickHandler(callback) {
+    this._callback.favoriteClick = callback;
+    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
+  }
+
+  setWatchedClickHandler(callback) {
+    this._callback.watchedClick = callback;
+    this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
+  }
+
+  setToWatchlistClickHandler(callback) {
+    this._callback.toWatchListClick = callback;
+    this.getElement().querySelector(`#watchlist`).addEventListener(`click`, this._toWatchedListClickHandler);
+  }
+
+  _emojiClickHandler(evt) {
+    evt.preventDefault();
+    const emoji = evt.target.value;
+    const emojiLabel = this.getElement().querySelector(`.film-details__add-emoji-label`);
+    emojiLabel.innerHTML = `<img src="./images/emoji/${emoji}.png" width="55" height="55" alt="emoji-${emoji}">`;
+  }
+
+  _setEmojiClickHandler() {
+    // this._callback.emojiListClick = callback;
+    const emojiItems = this.getElement().querySelectorAll(`.film-details__emoji-item`);
+    for (const emojiItem of emojiItems) {
+      emojiItem.addEventListener(`click`, this._emojiClickHandler);
+    }
+  }
+
+  static parseFilmToData(film) {
+    return Object.assign(
+        {},
+        film,
+        {
+          isInwatchlist: film.isInwatchlist,
+          isWatched: film.isWatched,
+          isFavorite: film.isFavorite
+        }
+    );
+  }
+
+  static parseDataToFilm(data) {
+    data = Object.assign({}, data);
+
+    delete data.isInwatchlist;
+    delete data.isWatched;
+    delete data.isFavorite;
+
+    return data;
   }
 }

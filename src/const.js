@@ -4,3 +4,9 @@ export const EMOJIS = [
   `sleeping`,
   `smile`
 ];
+
+export const SortType = {
+  DEFAULT: `default`,
+  DATE_DOWN: `date-down`,
+  RATING_DOWN: `rating-down`
+};
