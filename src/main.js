@@ -1,6 +1,5 @@
 import UserRatingView from "./view/user-rating.js";
 import FilterView from "./view/filter.js";
-import SortView from "./view/sort.js";
 import StatisticsView from "./view/statistic.js";
 import MovieListPresenter from "./presenter/movie-list.js";
 import {generateFilm} from "./mock/film.js";
@@ -21,8 +20,7 @@ const footerStatistics = siteFooterElement.querySelector(`.footer__statistics`);
 
 const movieListPresenter = new MovieListPresenter(siteMainElement, body);
 
-render(siteMainElement, new FilterView(filters), RenderPosition.BEFOREEND);
-render(siteMainElement, new SortView(), RenderPosition.BEFOREEND);
 render(siteHeaderElement, new UserRatingView(), RenderPosition.BEFOREEND);
 movieListPresenter.init(filmCards);
+render(siteMainElement, new FilterView(filters), RenderPosition.AFTERBEGIN);
 render(footerStatistics, new StatisticsView(), RenderPosition.BEFOREEND);

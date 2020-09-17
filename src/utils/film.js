@@ -21,3 +21,40 @@ export const ucFirst = (str) => {
   const firstLetter = str.substring(0, 1);
   return firstLetter.toUpperCase() + str.substring(1);
 };
+
+const getWeightForNullDate = (filmA, filmB) => {
+  if (filmA === null && filmB === null) {
+    return 0;
+  }
+
+  if (filmA === null) {
+    return 1;
+  }
+
+  if (filmB === null) {
+    return -1;
+  }
+
+  return null;
+};
+
+export const sortDateDown = (filmA, filmB) => {
+  const weight = getWeightForNullDate(filmA.filmDate, filmB.filmDate);
+
+  if (weight !== null) {
+    return weight;
+  }
+
+  return filmB.filmDate.getTime() - filmA.filmDate.getTime();
+};
+
+export const sortRatingDown = (filmA, filmB) => {
+  const weight = getWeightForNullDate(filmA.filmRating, filmB.filmRating);
+
+  if (weight !== null) {
+    return weight;
+  }
+
+  return filmB.filmRating - filmA.filmRating;
+};
+
