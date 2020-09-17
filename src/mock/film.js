@@ -1,7 +1,5 @@
 import {generateFilmComments} from "./comment.js";
-import {getRandomInteger, getRandomArrayElements, generateDate} from "../utils/common.js";
-
-const generateId = () => Date.now() + parseInt(Math.random() * 10000, 10);
+import {getRandomInteger, getRandomArrayElements, generateDate, generateId} from "../utils/common.js";
 
 const generatefilmTitle = () => {
   const filmTitles = [

@@ -36,9 +36,9 @@ export const updateItem = (items, update) => {
     return items;
   }
 
-  return [
-    ...items.slice(0, index),
-    update,
-    ...items.slice(index + 1)
-  ];
+  items[index] = update;
+
+  return items;
 };
+
+export const generateId = () => Date.now() + parseInt(Math.random() * 10000, 10);

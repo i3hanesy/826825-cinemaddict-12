@@ -161,8 +161,6 @@ export default class FilmDetails extends SmartView {
   constructor(film) {
     super();
     this._data = FilmDetails.parseFilmToData(film);
-    // this._emoji = ``;
-    // this._film = film;
 
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
@@ -249,7 +247,6 @@ export default class FilmDetails extends SmartView {
   }
 
   _setEmojiClickHandler() {
-    // this._callback.emojiListClick = callback;
     const emojiItems = this.getElement().querySelectorAll(`.film-details__emoji-item`);
     for (const emojiItem of emojiItems) {
       emojiItem.addEventListener(`click`, this._emojiClickHandler);
